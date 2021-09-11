@@ -1,6 +1,7 @@
 package com.arsenbaktiyarov.spring.springboot.springjpa.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "employees")
@@ -18,6 +19,9 @@ public class Employee extends BaseEntity {
 
     @Column(name = "salary")
     private int salary;
+
+    @ManyToMany(mappedBy = "employees")
+    private List<Task> tasks;
 
     public Employee() {}
 
@@ -58,5 +62,13 @@ public class Employee extends BaseEntity {
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 }
