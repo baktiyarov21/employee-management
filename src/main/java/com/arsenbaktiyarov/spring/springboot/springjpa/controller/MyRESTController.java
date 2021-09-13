@@ -28,8 +28,8 @@ public class MyRESTController {
 //    }
 //
 //    @GetMapping("/employees/{id}")
-//    public Employee getEmployee(@PathVariable int id) {
-//        Employee employee = employeeService.getEmployee(id);
+//    public Employee findById(@PathVariable int id) {
+//        Employee employee = employeeService.findById(id);
 //
 //
 //        return employee;
@@ -52,7 +52,7 @@ public class MyRESTController {
 //
 //    @DeleteMapping("/employees/{id}")
 //    public String deleteEmployee(@PathVariable int id) {
-//        Employee employee = employeeService.getEmployee(id);
+//        Employee employee = employeeService.findById(id);
 //
 //
 //        employeeService.deleteEmployee(id);
