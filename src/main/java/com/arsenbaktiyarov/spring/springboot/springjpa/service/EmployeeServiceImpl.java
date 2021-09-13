@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.swing.text.html.Option;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +25,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional // можно убрать JpaRepository обеспечивает транзакционность
     public List<Employee> findAll() {
-        return (List<Employee>) employeeRepository.findAll();
+        List<Employee> employeeList = new ArrayList<>();
+        employeeRepository.findAll().iterator().forEachRemaining(employeeList::add);
+        return employeeList;
     }
 
     @Override

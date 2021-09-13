@@ -1,13 +1,23 @@
 package com.arsenbaktiyarov.spring.springboot.springjpa.controller;
 
+import com.arsenbaktiyarov.spring.springboot.springjpa.entity.Employee;
+import com.arsenbaktiyarov.spring.springboot.springjpa.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
 //@RequestMapping("/boot-api")
 public class MyRESTController {
+
+    private EmployeeService employeeService;
+
+    public MyRESTController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
 
     @GetMapping
@@ -17,6 +27,17 @@ public class MyRESTController {
         log.debug("###########################");
         return ResponseEntity.ok("Hello");
     }
+
+    @GetMapping("/employee/{id}")
+    public Employee getById(@PathVariable Long id) {
+        return employeeService.findById(id);
+    }
+
+    @GetMapping("/employees")
+    public List<Employee> getAllEmployees() {
+        return employeeService.findAll();
+    }
+
 
 //    @Autowired
 //    private EmployeeService employeeService;
