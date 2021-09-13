@@ -8,7 +8,10 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Slf4j
 @Entity
 @Table(name = "tasks")

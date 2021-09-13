@@ -5,7 +5,10 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "employees")
 public class Employee extends BaseEntity {
@@ -26,13 +29,5 @@ public class Employee extends BaseEntity {
     @ManyToMany(mappedBy = "employees")
     private List<Task> tasks;
 
-    public Employee() {}
-
-    public Employee(String name, String surname, Department department, int salary) {
-        this.name = name;
-        this.surname = surname;
-        this.department = department;
-        this.salary = salary;
-    }
 
 }

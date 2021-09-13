@@ -5,7 +5,10 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "departments")
 public class Department extends BaseEntity {
