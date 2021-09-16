@@ -1,13 +1,13 @@
-package com.arsenbaktiyarov.spring.springboot.springjpa;
+package com.arsenbaktiyarov.spring.employees;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringJpaApplication {
+public class SpringEmployeeApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringJpaApplication.class, args);
+        SpringApplication.run(SpringEmployeeApplication.class, args);
     }
 
 }

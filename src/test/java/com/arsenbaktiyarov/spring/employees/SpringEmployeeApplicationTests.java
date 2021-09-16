@@ -1,4 +1,4 @@
-package com.arsenbaktiyarov.spring.springboot.springjpa;
+package com.arsenbaktiyarov.spring.employees;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -8,7 +8,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class SpringJpaApplicationTests {
+class SpringEmployeeApplicationTests {
 
     @Test
     void contextLoads() {

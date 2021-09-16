@@ -1,6 +1,6 @@
-package com.arsenbaktiyarov.spring.springboot.springjpa.controller;
+package com.arsenbaktiyarov.spring.employees.controller;
 
-import com.arsenbaktiyarov.spring.springboot.springjpa.service.EmployeeService;
+import com.arsenbaktiyarov.spring.employees.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

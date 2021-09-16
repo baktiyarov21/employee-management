@@ -1,7 +1,7 @@
-package com.arsenbaktiyarov.spring.springboot.springjpa.controller;
+package com.arsenbaktiyarov.spring.employees.controller;
 
-import com.arsenbaktiyarov.spring.springboot.springjpa.entity.Employee;
-import com.arsenbaktiyarov.spring.springboot.springjpa.service.EmployeeService;
+import com.arsenbaktiyarov.spring.employees.entity.Employee;
+import com.arsenbaktiyarov.spring.employees.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

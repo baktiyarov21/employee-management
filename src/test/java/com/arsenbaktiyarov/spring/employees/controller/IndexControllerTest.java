@@ -1,6 +1,6 @@
-package com.arsenbaktiyarov.spring.springboot.springjpa.controller;
+package com.arsenbaktiyarov.spring.employees.controller;
 
-import com.arsenbaktiyarov.spring.springboot.springjpa.service.EmployeeService;
+import com.arsenbaktiyarov.spring.employees.service.EmployeeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

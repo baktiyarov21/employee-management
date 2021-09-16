@@ -1,13 +1,11 @@
-package com.arsenbaktiyarov.spring.springboot.springjpa.service;
+package com.arsenbaktiyarov.spring.employees.service;
 
 
-import com.arsenbaktiyarov.spring.springboot.springjpa.repository.EmployeeRepository;
-import com.arsenbaktiyarov.spring.springboot.springjpa.entity.Employee;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.arsenbaktiyarov.spring.employees.repository.EmployeeRepository;
+import com.arsenbaktiyarov.spring.employees.entity.Employee;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

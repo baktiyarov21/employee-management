@@ -1,6 +1,6 @@
-package com.arsenbaktiyarov.spring.springboot.springjpa.service;
+package com.arsenbaktiyarov.spring.employees.service;
 
-import com.arsenbaktiyarov.spring.springboot.springjpa.entity.Department;
+import com.arsenbaktiyarov.spring.employees.entity.Department;
 
 import java.util.List;
 

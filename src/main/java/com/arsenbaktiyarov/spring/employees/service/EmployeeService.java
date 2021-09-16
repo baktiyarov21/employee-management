@@ -1,6 +1,6 @@
-package com.arsenbaktiyarov.spring.springboot.springjpa.service;
+package com.arsenbaktiyarov.spring.employees.service;
 
-import com.arsenbaktiyarov.spring.springboot.springjpa.entity.Employee;
+import com.arsenbaktiyarov.spring.employees.entity.Employee;
 
 import java.util.List;
 
@@ -16,5 +16,5 @@ public interface EmployeeService {
 
     void deleteById(Long id);
 
-    public List<Employee> findAllByName(String name);
+    List<Employee> findAllByName(String name);
 }

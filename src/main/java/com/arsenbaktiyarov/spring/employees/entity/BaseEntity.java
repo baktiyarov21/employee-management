@@ -1,4 +1,4 @@
-package com.arsenbaktiyarov.spring.springboot.springjpa.entity;
+package com.arsenbaktiyarov.spring.employees.entity;
 
 import lombok.Data;
 

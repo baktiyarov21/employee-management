@@ -1,7 +1,7 @@
-package com.arsenbaktiyarov.spring.springboot.springjpa.bootstrap;
+package com.arsenbaktiyarov.spring.employees.bootstrap;
 
-import com.arsenbaktiyarov.spring.springboot.springjpa.entity.Employee;
-import com.arsenbaktiyarov.spring.springboot.springjpa.service.EmployeeService;
+import com.arsenbaktiyarov.spring.employees.entity.Employee;
+import com.arsenbaktiyarov.spring.employees.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

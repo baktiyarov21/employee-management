@@ -1,6 +1,6 @@
-package com.arsenbaktiyarov.spring.springboot.springjpa.repository;
+package com.arsenbaktiyarov.spring.employees.repository;
 
-import com.arsenbaktiyarov.spring.springboot.springjpa.entity.Department;
+import com.arsenbaktiyarov.spring.employees.entity.Department;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
