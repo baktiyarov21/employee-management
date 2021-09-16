@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index page</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Salary</th>
+        </tr>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.getId()}">Id</td>
+            <td th:text="${employee.getName()}">Name</td>
+            <td th:text="${employee.getSurname()}">Surname</td>
+            <td th:text="${employee.getSalary()}">Salary</td>
+        </tr>
+    </table>
+</body>
+</html>
