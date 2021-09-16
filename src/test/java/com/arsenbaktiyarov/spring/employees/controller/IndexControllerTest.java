@@ -8,6 +8,10 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.ui.Model;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 class IndexControllerTest {
 
@@ -29,5 +33,7 @@ class IndexControllerTest {
     void getIndexPage() {
         String viewName = indexController.getIndexPage(model);
         assertEquals("index", viewName);
+        verify(employeeService, times(1)).findAll();
+        verify(model, times(1)).addAttribute(eq("employees"), anyList());
     }
 }
