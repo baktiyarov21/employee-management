@@ -35,7 +35,7 @@ class EmployeeServiceImplTest {
         when(employeeService.findAll()).thenReturn(employeeList);
 
         List<Employee> allEmployees = employeeService.findAll();
-        assertEquals(allEmployees.size(), 1);
+        assertEquals(1,allEmployees.size());
     }
 
 
