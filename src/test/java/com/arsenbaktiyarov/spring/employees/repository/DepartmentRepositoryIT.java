@@ -24,7 +24,10 @@ class DepartmentRepositoryIT {
 
     @Test
     void findByName() {
-      Department department = departmentRepository.findByName("IT");
-      assertEquals("IT", department.getName());
+        Department savedDepartment = new Department();
+        savedDepartment.setName("IT");
+        departmentRepository.save(savedDepartment);
+        Department department = departmentRepository.findByName("IT");
+        assertEquals(savedDepartment.getName(), department.getName());
     }
 }
