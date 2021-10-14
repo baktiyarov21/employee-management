@@ -15,7 +15,12 @@ import java.util.List;
 public class Department extends BaseEntity {
     @Column(name = "name")
     private String name;
-    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+
+    @OneToMany(cascade =  {
+            CascadeType.MERGE,
+            CascadeType.REFRESH
+    })
+    @JoinColumn(name = "department_id")
     private List<Employee> employees = new ArrayList<>();
 
 }

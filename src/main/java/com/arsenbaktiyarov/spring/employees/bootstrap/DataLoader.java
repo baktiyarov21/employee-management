@@ -7,6 +7,8 @@ import com.arsenbaktiyarov.spring.employees.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 @Slf4j
 @AllArgsConstructor
 @Component
-public class DataLoader implements CommandLineRunner {
+public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 
     private final EmployeeService employeeService;
@@ -22,12 +24,14 @@ public class DataLoader implements CommandLineRunner {
 
 
     @Override
-    public void run(String... args) throws Exception {
+    public void onApplicationEvent(ContextRefreshedEvent event) {
         log.info("######################");
         log.info("Loading data.........");
         loadData();
         log.info("######################");
     }
+
+
 
     private void loadData() {
         Employee employee = new Employee();
@@ -35,11 +39,15 @@ public class DataLoader implements CommandLineRunner {
         employee.setName("Arsen");
         employee.setSurname("Baktiyarov");
         employee.setSalary(100000);
+        employeeService.save(employee);
+
+
         Department department = new Department();
         department.setName("IT");
         department.getEmployees().add(employee);
         departmentService.save(department);
     }
+
 
 
 }

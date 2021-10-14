@@ -21,9 +21,6 @@ public class Employee extends BaseEntity {
     @Column(name = "surname")
     private String surname;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "department_id")
-    private Department department;
 
     @Column(name = "salary")
     private int salary;
