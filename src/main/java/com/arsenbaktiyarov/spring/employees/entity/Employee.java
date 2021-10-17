@@ -21,6 +21,8 @@ public class Employee extends BaseEntity {
     @Column(name = "surname")
     private String surname;
 
+    @Column(name = "role")
+    private String role;
 
     @Column(name = "salary")
     private int salary;
