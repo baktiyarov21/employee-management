@@ -41,11 +41,39 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         employee.setSalary(100000);
         employeeService.save(employee);
 
+        Employee employee2 = new Employee();
+        employee.setId(2L);
+        employee.setName("Justin");
+        employee.setSurname("Hunt");
+        employee.setSalary(20000);
+        employeeService.save(employee2);
 
-        Department department = new Department();
-        department.setName("IT");
-        department.getEmployees().add(employee);
-        departmentService.save(department);
+        Employee employee3 = new Employee();
+        employee.setId(3L);
+        employee.setName("Joe");
+        employee.setSurname("Perry");
+        employee.setSalary(50000);
+        employeeService.save(employee3);
+
+        Employee employee4 = new Employee();
+        employee.setId(4L);
+        employee.setName("Ross");
+        employee.setSurname("Geller");
+        employee.setSalary(30000);
+        employeeService.save(employee4);
+
+
+        Department it = new Department();
+        it.setName("Information Technologies");
+        it.getEmployees().add(employee);
+        departmentService.save(it);
+
+        Department accounting = new Department();
+        accounting.setName("Accounting");
+        accounting.getEmployees().add(employee3);
+        departmentService.save(accounting);
+
+
     }
 
 
