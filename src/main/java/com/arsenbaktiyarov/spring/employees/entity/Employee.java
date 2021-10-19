@@ -7,10 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "employees")
 public class Employee extends BaseEntity {
@@ -24,6 +22,7 @@ public class Employee extends BaseEntity {
     @Column(name = "role")
     private String role;
 
-    @Column(name = "salary")
-    private int salary;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "salary_id")
+    private Salary salary;
 }

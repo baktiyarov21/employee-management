@@ -6,10 +6,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "departments")
 public class Department extends BaseEntity {

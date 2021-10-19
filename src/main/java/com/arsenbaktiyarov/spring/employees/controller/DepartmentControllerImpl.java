@@ -25,16 +25,16 @@ public class DepartmentControllerImpl implements DepartmentController {
         return departmentService.findAll();
     }
 
-    @GetMapping("/")
+    @GetMapping("/{}")
     @Override
-    public Department findById(@RequestParam Long id) {
+    public Department findById(@PathVariable Long id) {
         return departmentService.findById(id);
     }
 
 
-    @GetMapping("/")
+    @GetMapping("/{name}")
     @Override
-    public Department findByName(@RequestParam String name) {
+    public Department findByName(@PathVariable String name) {
         return departmentService.findByName(name);
     }
 
@@ -51,9 +51,9 @@ public class DepartmentControllerImpl implements DepartmentController {
         return "Department " + department.getName() + " was deleted";
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping("/{id}")
     @Override
-    public String deleteById(@RequestParam Long id) {
+    public String deleteById(@PathVariable Long id) {
         departmentService.deleteById(id);
 
         if(departmentService.findById(id) == null) {
