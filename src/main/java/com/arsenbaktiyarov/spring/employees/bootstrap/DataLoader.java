@@ -39,7 +39,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         Salary middlesSalary = new Salary();
         middlesSalary.setId(2L);
-        middlesSalary.setSalary(25000);
+        middlesSalary.setSalary(55000);
 
         Employee employee = new Employee();
         employee.setId(1L);
@@ -52,14 +52,14 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         employee2.setId(2L);
         employee2.setName("Justin");
         employee2.setSurname("Hunt");
-//        employee2.setSalary(middlesSalary);
+        employee2.setSalary(middlesSalary);
         employeeService.save(employee2);
 
         Employee employee3 = new Employee();
         employee3.setId(3L);
         employee3.setName("Joe");
         employee3.setSurname("Perry");
-//        employee3.setSalary(juniorsSalary);
+        employee3.setSalary(juniorsSalary);
         employeeService.save(employee3);
 
         Employee employee4 = new Employee();

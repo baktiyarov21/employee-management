@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,7 +17,7 @@ public class Salary extends BaseEntity{
     @Column(name = "employee_salary")
     private Integer salary;
 
-    @OneToOne(mappedBy = "salary", cascade = CascadeType.ALL)
-    private Employee employee;
+    @OneToMany(mappedBy = "salary", cascade = CascadeType.ALL)
+    private List<Employee > employeeList;
 
 }

@@ -22,7 +22,7 @@ public class Employee extends BaseEntity {
     @Column(name = "role")
     private String role;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "salary_id")
     private Salary salary;
 }
