@@ -5,6 +5,7 @@ import com.arsenbaktiyarov.spring.employees.service.EmployeeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
@@ -23,7 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-class IndexControllerTest {
+class EmployeeMVCControllerTest {
 
     @Mock
     EmployeeService employeeService;
@@ -31,19 +32,19 @@ class IndexControllerTest {
     @Mock
     Model model;
 
-    IndexController indexController;
+    @InjectMocks
+    EmployeeMvcController employeeMvcController;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        indexController = new IndexController(employeeService);
     }
 
     @Test
     void textMockMVC() throws Exception {
-        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(indexController).build();
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(employeeMvcController).build();
 
-        mockMvc.perform(get("/index/"))
+        mockMvc.perform(get("/employee-mvc/"))
         .andExpect(status().isOk())
         .andExpect(view().name("index"));
     }
@@ -59,7 +60,7 @@ class IndexControllerTest {
         when(employeeService.findAll()).thenReturn(employeeList);
         ArgumentCaptor<List<Employee>> argumentCaptor = ArgumentCaptor.forClass(List.class);
         // when
-        String viewName = indexController.getIndexPage(model);
+        String viewName = employeeMvcController.getIndexPage(model);
         //then
         assertEquals("index", viewName);
         verify(employeeService, times(1)).findAll();
