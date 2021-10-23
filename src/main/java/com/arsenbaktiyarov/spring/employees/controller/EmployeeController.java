@@ -4,13 +4,14 @@ import com.arsenbaktiyarov.spring.employees.entity.Employee;
 import com.arsenbaktiyarov.spring.employees.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Slf4j
 @RestController
-//@RequestMapping("/boot-api")
+@RequestMapping("/employee-rest")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -20,13 +21,6 @@ public class EmployeeController {
     }
 
 
-    @GetMapping
-    public ResponseEntity<String> sayHello() {
-        log.debug("###########################");
-        log.debug("Rest Controller is running");
-        log.debug("###########################");
-        return ResponseEntity.ok("Hello");
-    }
 
     @GetMapping("/employee/{id}")
     public Employee getById(@PathVariable Long id) {
