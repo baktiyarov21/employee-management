@@ -1,18 +1,16 @@
 package com.arsenbaktiyarov.spring.employees.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "salary")
 public class Salary extends BaseEntity{
@@ -24,5 +22,18 @@ public class Salary extends BaseEntity{
     @JsonManagedReference
     private List<Employee > employeeList;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Salary salary1 = (Salary) o;
+        return Objects.equals(salary, salary1.salary) && Objects.equals(employeeList, salary1.employeeList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), salary, employeeList);
+    }
 
 }

@@ -5,11 +5,12 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "departments")
 public class Department extends BaseEntity {
@@ -22,5 +23,20 @@ public class Department extends BaseEntity {
     })
     @JoinColumn(name = "department_id")
     private List<Employee> employees = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Department that = (Department) o;
+        return Objects.equals(name, that.name) && Objects.equals(employees, that.employees);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), name, employees);
+    }
+
 
 }

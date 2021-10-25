@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.arsenbaktiyarov.spring.springboot</groupId>
-    <artifactId>spring-jpa</artifactId>
+    <artifactId>employee-management</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-jpa</name>
-    <description>Demo project for Spring Boot</description>
+    <name>employee-management</name>
+    <description>Spring Boot Application for managing employees</description>
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -42,7 +42,7 @@
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
-            <version>5.1.3</version>
+            <version>5.1.1</version>
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
@@ -71,6 +71,11 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M3</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
