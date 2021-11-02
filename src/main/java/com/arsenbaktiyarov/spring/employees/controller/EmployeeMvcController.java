@@ -25,6 +25,6 @@ public class EmployeeMvcController {
         List<Employee> employees = employeeService.findAll();
         model.addAttribute("employees", employees);
         log.info(employees.get(0).toString());
-        return "index";
+        return "employee";
     }
 }
