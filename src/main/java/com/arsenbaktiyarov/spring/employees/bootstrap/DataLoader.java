@@ -1,15 +1,18 @@
 package com.arsenbaktiyarov.spring.employees.bootstrap;
 
-import com.arsenbaktiyarov.spring.employees.entity.Department;
-import com.arsenbaktiyarov.spring.employees.entity.Employee;
-import com.arsenbaktiyarov.spring.employees.entity.Salary;
+import com.arsenbaktiyarov.spring.employees.entity.*;
 import com.arsenbaktiyarov.spring.employees.service.DepartmentService;
 import com.arsenbaktiyarov.spring.employees.service.EmployeeService;
+import com.arsenbaktiyarov.spring.employees.service.TaskService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @Slf4j
 @AllArgsConstructor
@@ -19,6 +22,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     private final EmployeeService employeeService;
     private final DepartmentService departmentService;
+    private final TaskService taskService;
 
 
 
@@ -69,6 +73,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         employee4.setSalary(juniorsSalary);
         employeeService.save(employee4);
 
+        Position position = new Position();
+        position.setName("HR Specialist Junior");
+        position.setEmployees(Arrays.asList(employee3));
+
 
         Department it = new Department();
         it.setName("Information Technologies");
@@ -81,6 +89,17 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         accounting.getEmployees().add(employee3);
         accounting.getEmployees().add(employee4);
         departmentService.save(accounting);
+
+
+        Task createSitePrototype = new Task();
+        createSitePrototype.setTitle("Create a prototype of a Cafe website");
+        createSitePrototype.setDescription("Create prototype using Figma");
+        createSitePrototype.setDeadline(LocalDate.now().plusDays(20));
+        createSitePrototype.setEmployees(Arrays.asList(employee, employee2));
+        taskService.save(createSitePrototype);
+
+
+
 
 
     }

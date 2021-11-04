@@ -34,7 +34,6 @@ public class TaskServiceImpl implements TaskService {
             task = taskFromBD.get();
         }
         return task;
-
     }
 
     @Override

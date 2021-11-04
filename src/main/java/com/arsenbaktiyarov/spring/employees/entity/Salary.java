@@ -20,7 +20,7 @@ public class Salary extends BaseEntity{
 
     @OneToMany(mappedBy = "salary", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<Employee > employeeList;
+    private List<Employee> employeeList;
 
     @Override
     public boolean equals(Object o) {

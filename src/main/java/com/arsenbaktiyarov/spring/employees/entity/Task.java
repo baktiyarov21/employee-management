@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Slf4j
 @Entity
-@Table(name = "tasks")
+@Table(name = "task")
 public class Task extends BaseEntity {
 
     @Column(name = "title")
@@ -26,7 +26,7 @@ public class Task extends BaseEntity {
     @Column(name = "deadline")
     private LocalDate deadline;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "employee_tasks",
             joinColumns = @JoinColumn(name = "task_id"),
             inverseJoinColumns = @JoinColumn(name = "employee_id"))
