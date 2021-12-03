@@ -1,6 +1,5 @@
 package com.arsenbaktiyarov.spring.employees.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,10 +24,8 @@ public class Employee extends BaseEntity {
     @Column(name = "surname")
     private String surname;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "salary_id")
-    @JsonBackReference
-    private Salary salary;
+    @Column(name = "salary")
+    private Integer salary;
 
     @ManyToMany
     @JoinTable(name = "employee_tasks",

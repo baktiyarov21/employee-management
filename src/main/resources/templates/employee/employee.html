@@ -12,11 +12,9 @@
 </head>
 <body>
 
-<div class="container-fluid" style="display: flex;
-  align-items: center;
-  justify-content: center ">
+<div class="container-md">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-offset-6 col-md-6">
             <div class="panel panel-primary">
 
                 <div class="panel-heading">
@@ -35,7 +33,7 @@
                                 <td th:text="${employee.getId()}">Id</td>
                                 <td th:text="${employee.getName()}">Name</td>
                                 <td th:text="${employee.getSurname()}">Surname</td>
-                                <td th:text="${employee.getSalary().getId()}">Salary</td>
+                                <td th:text="${employee.getSalary()}">Salary</td>
                             </tr>
                         </table>
                     </div>

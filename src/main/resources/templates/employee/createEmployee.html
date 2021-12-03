@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/employee-mvc/save-employee}" th:object="${employee}" method="post">
+    Name: <input type="text" name="name" th:field="*{name}">
+    Surname: <input type="text" name="surname" th:field="*{surname}">
+    Salary: <input type="text" name="salary" th:field="*{salary}">
+    <button type="submit">add</button>
+</form>
+</body>
+</html>

@@ -3,8 +3,6 @@ package com.arsenbaktiyarov.spring.employees.controller;
 import com.arsenbaktiyarov.spring.employees.entity.Employee;
 import com.arsenbaktiyarov.spring.employees.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,8 +17,6 @@ public class EmployeeController {
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
-
-
 
     @GetMapping("/employee/{id}")
     public Employee getById(@PathVariable Long id) {
