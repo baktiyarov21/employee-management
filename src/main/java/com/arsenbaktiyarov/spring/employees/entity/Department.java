@@ -11,6 +11,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 @Entity
 @Table(name = "department")
 public class Department extends BaseEntity {
