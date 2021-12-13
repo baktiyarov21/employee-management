@@ -7,11 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Getter
 @Setter
-@Builder
 @Entity
 @Table(name = "department")
 public class Department extends BaseEntity {
@@ -24,6 +22,16 @@ public class Department extends BaseEntity {
     })
     @JoinColumn(name = "department_id")
     private List<Employee> employees = new ArrayList<>();
+
+    public Department() {
+    }
+
+    @Builder
+    public Department(Long id, String name, List<Employee> employees) {
+        super(id);
+        this.name = name;
+        this.employees = employees;
+    }
 
     @Override
     public boolean equals(Object o) {

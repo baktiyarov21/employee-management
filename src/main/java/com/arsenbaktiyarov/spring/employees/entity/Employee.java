@@ -1,17 +1,13 @@
 package com.arsenbaktiyarov.spring.employees.entity;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
-
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -32,6 +28,19 @@ public class Employee extends BaseEntity {
             joinColumns = @JoinColumn(name = "employee_id"),
             inverseJoinColumns = @JoinColumn(name = "task_id"))
     private List<Task> tasks;
+
+    public Employee() {
+
+    }
+
+    @Builder
+    public Employee(Long id, String name, String surname, Integer salary, List<Task> tasks) {
+        super(id);
+        this.name = name;
+        this.surname = surname;
+        this.salary = salary;
+        this.tasks = tasks;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -25,7 +25,7 @@ public class DepartmentControllerImpl implements DepartmentController {
         return departmentService.findAll();
     }
 
-    @GetMapping("/{}")
+    @GetMapping("/{id}")
     @Override
     public Department findById(@PathVariable Long id) {
         return departmentService.findById(id);

@@ -16,8 +16,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -45,7 +45,7 @@ class DepartmentControllerImplTest {
         MockitoAnnotations.openMocks(this);
         employees = new ArrayList<>();
         departments = new ArrayList<>();
-        employees.add(new Employee("Steven", "Henry", 10000, null));
+        employees.add(new Employee(1L,"Steven", "Henry", 10000, null));
         departments.add(Department.builder().name("HR").build());
         departments.add(Department.builder().name("IT").build());
         mockMvc = MockMvcBuilders.standaloneSetup(departmentController).build();
@@ -54,21 +54,30 @@ class DepartmentControllerImplTest {
     @Test
     void findAll() throws Exception {
         when(departmentService.findAll())
-                .thenReturn(Arrays.asList(Department.builder().name("IT").build()));
+                .thenReturn(departments);
         mockMvc.perform(get("/department/")).andExpect(status().isOk());
-        verify(departmentService).findAll();
+        assertEquals(2, departmentService.findAll().size());
     }
 
     @Test
-    void findById() {
+    void findById() throws Exception {
+        when(departmentService.findById(anyLong()))
+                .thenReturn(Department.builder().id(1L).name("Dep").build());
+        mockMvc.perform(get("/department/"))
+                .andExpect(status().isOk())
+                .andReturn();
+        Department department = departmentService.findById(anyLong());
+        assertEquals(1L, department.getId());
+
     }
 
     @Test
     void save() throws Exception {
-        when(departmentService.save(any())).thenReturn(Department.builder().name("Dep").build());
+        when(departmentService.save(any())).thenReturn(departments.get(0));
         mockMvc.perform(post("/department/")).andExpect(status().isOk());
         verify(departmentService).save(any());
         verify(departmentService, times(1)).save(any());
+        assertEquals("HR", departments.get(0).getName());
     }
 
     @Test
