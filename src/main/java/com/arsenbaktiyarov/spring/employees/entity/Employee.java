@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
+import java.sql.Date;
 import java.util.Objects;
 
 @Getter
@@ -20,26 +20,27 @@ public class Employee extends BaseEntity {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "salary")
-    private Integer salary;
+    @Column(name = "birth_date")
+    private Date birthday;
 
-    @ManyToMany
-    @JoinTable(name = "employee_tasks",
-            joinColumns = @JoinColumn(name = "employee_id"),
-            inverseJoinColumns = @JoinColumn(name = "task_id"))
-    private List<Task> tasks;
+    @Enumerated(EnumType.ORDINAL)
+    private Gender gender;
+
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.MERGE)
+    private Salary salary;
 
     public Employee() {
 
     }
 
     @Builder
-    public Employee(Long id, String name, String surname, Integer salary, List<Task> tasks) {
+    public Employee(Long id, String name, String surname, Date birthday, Gender gender, Salary salary) {
         super(id);
         this.name = name;
         this.surname = surname;
+        this.birthday = birthday;
+        this.gender = gender;
         this.salary = salary;
-        this.tasks = tasks;
     }
 
     @Override

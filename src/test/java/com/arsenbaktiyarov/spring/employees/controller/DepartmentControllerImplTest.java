@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,7 +33,7 @@ class DepartmentControllerImplTest {
     DepartmentService departmentService;
 
     @InjectMocks
-    DepartmentControllerImpl departmentController;
+    DepartmentController departmentController;
 
     ArrayList<Department> departments;
 
@@ -45,7 +46,8 @@ class DepartmentControllerImplTest {
         MockitoAnnotations.openMocks(this);
         employees = new ArrayList<>();
         departments = new ArrayList<>();
-        employees.add(new Employee(1L,"Steven", "Henry", 10000, null));
+        employees.add(new Employee(1L,"Steven", "Henry"
+                , new Date(2000-02-21), null, null));
         departments.add(Department.builder().name("HR").build());
         departments.add(Department.builder().name("IT").build());
         mockMvc = MockMvcBuilders.standaloneSetup(departmentController).build();
