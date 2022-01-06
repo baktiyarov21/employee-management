@@ -1,6 +1,5 @@
 package com.arsenbaktiyarov.spring.employees.entity;
 
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,15 +11,15 @@ import java.sql.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "salaries")
-public class Salary extends BaseEntity {
+@Table(name = "titles")
+public class Title extends BaseEntity {
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @Column(name = "salary")
-    private int salary;
+    @Column(name = "title")
+    private String title;
 
     @Column(name = "from_date")
     @DateTimeFormat(pattern="dd/MM/yyyy")
@@ -30,19 +29,14 @@ public class Salary extends BaseEntity {
     @DateTimeFormat(pattern="dd/MM/yyyy")
     private Date toDate;
 
-    public Salary() {}
+    public Title() {}
 
     @Builder
-    public Salary(Long id, Employee employee, int salary, Date fromDate, Date toDate) {
+    public Title(Long id, Employee employee, String title, Date fromDate, Date toDate) {
         super(id);
         this.employee = employee;
-        this.salary = salary;
+        this.title = title;
         this.fromDate = fromDate;
         this.toDate = toDate;
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(salary);
     }
 }
