@@ -1,6 +1,7 @@
 package com.arsenbaktiyarov.spring.employees.controller;
 
 import com.arsenbaktiyarov.spring.employees.entity.Department;
+import com.arsenbaktiyarov.spring.employees.exception.DepartmentNotFoundException;
 import com.arsenbaktiyarov.spring.employees.service.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,11 @@ public class DepartmentController{
 
     @GetMapping("/{id}")
     public Department findById(@PathVariable Long id) {
-        return departmentService.findById(id);
+        Department department = departmentService.findById(id);
+        if (department == null) {
+            throw new DepartmentNotFoundException("id-" + id);
+        }
+        return department;
     }
 
 
@@ -38,13 +43,13 @@ public class DepartmentController{
         return departmentService.save(department);
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping("/delete/")
     public String delete(Department department) {
         departmentService.delete(department);
         return "Department " + department.getName() + " was deleted";
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteById(@PathVariable Long id) {
         departmentService.deleteById(id);
         if(departmentService.findById(id) == null) {

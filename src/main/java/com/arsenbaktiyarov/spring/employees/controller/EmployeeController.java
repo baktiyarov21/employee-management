@@ -42,13 +42,13 @@ public class EmployeeController {
         return employee;
     }
 
-    @DeleteMapping("/employees/")
+    @DeleteMapping("/delete/employees/")
     public String delete(@RequestBody Employee employee) {
         employeeService.delete(employee);
         return "Employee deleted" + employee.getName();
     }
 
-    @DeleteMapping("/employees/{id}")
+    @DeleteMapping("/delete/employees/{id}")
     public String deleteEmployeeById (@PathVariable Long id) {
         employeeService.deleteById(id);
         return "Employee with id = " + id + " deleted";
