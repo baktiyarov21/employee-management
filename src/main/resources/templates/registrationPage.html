@@ -13,15 +13,15 @@
               method="post">
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email">
+                <input type="email" class="form-control" id="email" th:field="*{email}">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password">
+                <input type="password" class="form-control" id="password" th:field="*{password}">
             </div>
             <div class="mb-3">
                 <label for="passwordConfirmation" class="form-label">Password Confirmation</label>
-                <input type="password" class="form-control" id="passwordConfirmation">
+                <input type="password" class="form-control" id="passwordConfirmation" th:field="*{passwordConfirmation}">
             </div>
             <input type="submit" class="btn btn-primary" value="Register" />
         </form>

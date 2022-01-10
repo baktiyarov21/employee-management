@@ -2,6 +2,7 @@ package com.arsenbaktiyarov.spring.employees.service;
 
 import com.arsenbaktiyarov.spring.employees.entity.User;
 import com.arsenbaktiyarov.spring.employees.repository.UserRepository;
+import com.arsenbaktiyarov.spring.employees.validation.EmailExistsException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,4 +23,11 @@ public class UserServiceImpl implements UserService {
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+
+    @Override
+    public User registerNewUser(User user) throws EmailExistsException {
+        return userRepository.save(user);
+    }
+
+
 }
