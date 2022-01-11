@@ -47,7 +47,7 @@ class EmployeeMVCControllerTest {
 
         mockMvc.perform(get("/employee-mvc/"))
         .andExpect(status().isOk())
-        .andExpect(view().name("index"));
+        .andExpect(view().name("employee/employee"));
     }
 
     @Test

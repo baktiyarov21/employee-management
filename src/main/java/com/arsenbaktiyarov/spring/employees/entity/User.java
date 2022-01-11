@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.util.Calendar;
@@ -14,15 +15,15 @@ import java.util.Calendar;
 @Entity
 public class User extends BaseEntity {
 
-//    @Email
-//    @NotEmpty(message = "Email is required.")
+    @Email
+    @NotEmpty(message = "Email is required.")
     private String email;
 
-//    @NotEmpty(message = "Password is required.")
+    @NotEmpty(message = "Password is required.")
     private String password;
 
-//    @Transient
-//    @NotEmpty(message = "Password confirmation is required.")
+    @Transient
+    @NotEmpty(message = "Password confirmation is required.")
     private String passwordConfirmation;
 
     private Calendar created = Calendar.getInstance();

@@ -41,13 +41,13 @@ public class EmployeeSecurityConfig extends WebSecurityConfigurerAdapter {
                 loginPage("/login").permitAll().
                 loginProcessingUrl("/doLogin")
                 .and()
-                .logout().permitAll().logoutUrl("/logout")
+                .logout().permitAll().logoutUrl("/doLogout")
                 .and()
                 .csrf().disable();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
