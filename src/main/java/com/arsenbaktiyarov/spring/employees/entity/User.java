@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
@@ -13,6 +14,7 @@ import java.util.Calendar;
 @Getter
 @Setter
 @Entity
+//@PasswordMatches
 public class User extends BaseEntity {
 
     @Email
@@ -27,6 +29,9 @@ public class User extends BaseEntity {
     private String passwordConfirmation;
 
     private Calendar created = Calendar.getInstance();
+
+    @Column
+    private Boolean enabled;
 
     public User() {}
 

@@ -1,7 +1,9 @@
 package com.arsenbaktiyarov.spring.employees.service;
 
 import com.arsenbaktiyarov.spring.employees.entity.User;
+import com.arsenbaktiyarov.spring.employees.entity.VerificationToken;
 import com.arsenbaktiyarov.spring.employees.repository.UserRepository;
+import com.arsenbaktiyarov.spring.employees.repository.VerificationTokenRepository;
 import com.arsenbaktiyarov.spring.employees.validation.EmailExistsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -10,11 +12,13 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final VerificationTokenRepository verificationTokenRepository;
     private final PasswordEncoder passwordEncoder;
 
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, VerificationTokenRepository verificationTokenRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.verificationTokenRepository = verificationTokenRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -43,5 +47,15 @@ public class UserServiceImpl implements UserService {
         return user != null;
     }
 
+    @Override
+    public void createVerificationTokenForUser(User user, String token) {
+        VerificationToken myToken = new VerificationToken(token, user);
+        verificationTokenRepository.save(myToken);
+    }
+
+    @Override
+    public VerificationToken getVerificationToken(String token) {
+        return verificationTokenRepository.findByToken(token);
+    }
 
 }
