@@ -5,10 +5,7 @@ import com.arsenbaktiyarov.spring.employees.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,6 +36,12 @@ public class EmployeeMvcController {
     @PostMapping ("/save-employee")
     public String saveEmployee(@ModelAttribute Employee employee) {
         employeeService.save(employee);
+        return "redirect:/employee-mvc/list";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteEmployee(@PathVariable Long id) {
+        employeeService.deleteById(id);
         return "redirect:/employee-mvc/list";
     }
 }

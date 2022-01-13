@@ -28,14 +28,17 @@
                                 <th>Name</th>
                                 <th>Surname</th>
                                 <th>Salary</th>
+                                <th>Birthdate</th>
                             </tr>
                             <tr th:each="employee : ${employees}">
                                 <td th:text="${employee.getId()}">Id</td>
                                 <td th:text="${employee.getName()}">Name</td>
                                 <td th:text="${employee.getSurname()}">Surname</td>
-                                <td th:text="${employee.getSalary()}">Salary</td>
+                                <td th:text="${employee.getBirthday()}">Birthdate</td>
+                                <td><a class="link-primary" th:href="@{/employee-mvc/delete/{id}(id = ${employee.getId()})}">delete</a></td>
                             </tr>
                         </table>
+                        <a class="link-primary" th:href="@{/employee-mvc/create}">Create new employee</a>
                     </div>
                 </div>
             </div>
