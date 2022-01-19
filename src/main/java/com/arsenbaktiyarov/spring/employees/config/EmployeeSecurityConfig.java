@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-
 @EnableWebSecurity
 @Configuration
 public class EmployeeSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -24,8 +23,9 @@ public class EmployeeSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder()).and()
-        .inMemoryAuthentication().passwordEncoder(passwordEncoder()).
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+
+        auth.inMemoryAuthentication().passwordEncoder(passwordEncoder()).
                 withUser("user").password(passwordEncoder().encode("pass")).
                 roles("USER");
     }

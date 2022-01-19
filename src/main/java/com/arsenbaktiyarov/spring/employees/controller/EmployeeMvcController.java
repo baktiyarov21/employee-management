@@ -23,7 +23,6 @@ public class EmployeeMvcController {
     public String showUsersList(Model model) {
         List<Employee> employees = employeeService.findAll();
         model.addAttribute("employees", employees);
-        log.info(employees.get(0).toString());
         return "employee/employee";
     }
 

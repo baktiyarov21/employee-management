@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -33,12 +32,13 @@ class EmployeeMVCControllerTest {
     @Mock
     Model model;
 
-    @InjectMocks
+
     EmployeeMvcController employeeMvcController;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+        employeeMvcController = new EmployeeMvcController(employeeService);
     }
 
     @Test
@@ -63,7 +63,7 @@ class EmployeeMVCControllerTest {
         // when
         String viewName = employeeMvcController.showUsersList(model);
         //then
-        assertEquals("index", viewName);
+        assertEquals("employee/employee", viewName);
         verify(employeeService, times(1)).findAll();
         verify(model, times(1)).addAttribute(eq("employees"), argumentCaptor.capture());
         List<Employee> listInController = argumentCaptor.getValue();
