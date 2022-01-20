@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Registration Page</title>
@@ -9,19 +9,23 @@
 </head>
 <body>
     <div class="container">
+        <div th:if="${param.error}">Invalid username and password</div>
         <form id="userForm" th:action="@{/user/register}" th:object="${user}"
               method="post">
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" th:field="*{email}">
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" th:field="*{password}">
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
             </div>
             <div class="mb-3">
                 <label for="passwordConfirmation" class="form-label">Password Confirmation</label>
                 <input type="password" class="form-control" id="passwordConfirmation" th:field="*{passwordConfirmation}">
+                <div th:if="${#fields.hasErrors('passwordConfirmation')}" th:errors="*{password}">Password Confirmation Error</div>
             </div>
             <input type="submit" class="btn btn-primary" value="Register" />
         </form>

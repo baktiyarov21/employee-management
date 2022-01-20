@@ -42,12 +42,16 @@ class EmployeeMVCControllerTest {
     }
 
     @Test
-    void textMockMVC() throws Exception {
+    void textMockMVC()  {
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(employeeMvcController).build();
 
-        mockMvc.perform(get("/employee-mvc/"))
-        .andExpect(status().isOk())
-        .andExpect(view().name("employee/employee"));
+        try {
+            mockMvc.perform(get("/employee-mvc/"))
+            .andExpect(status().isOk())
+            .andExpect(view().name("employee/employee"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test

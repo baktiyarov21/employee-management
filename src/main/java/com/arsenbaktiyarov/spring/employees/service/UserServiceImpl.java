@@ -6,6 +6,8 @@ import com.arsenbaktiyarov.spring.employees.validation.EmailExistsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -29,12 +31,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User registerNewUser(User user) throws EmailExistsException {
+    public User registerNewUser(@Valid User user) throws EmailExistsException {
         if (emailExist(user.getEmail())) {
             throw new EmailExistsException("There is an account with that email address: " + user.getEmail());
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
         return userRepository.save(user);
     }
 

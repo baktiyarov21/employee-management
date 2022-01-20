@@ -1,5 +1,6 @@
 package com.arsenbaktiyarov.spring.employees.config;
 
+import com.arsenbaktiyarov.spring.employees.security.EmployeePasswordEncoderFactories;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +9,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
@@ -24,10 +24,6 @@ public class EmployeeSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-
-        auth.inMemoryAuthentication().passwordEncoder(passwordEncoder()).
-                withUser("user").password(passwordEncoder().encode("pass")).
-                roles("USER");
     }
 
 
@@ -41,6 +37,11 @@ public class EmployeeSecurityConfig extends WebSecurityConfigurerAdapter {
                 loginPage("/login").permitAll().
                 loginProcessingUrl("/doLogin")
                 .and()
+                .rememberMe().tokenValiditySeconds(604800)
+                .key("EmployeeAppKey")
+//                .useSecureCookie(true)
+                .rememberMeCookieName("my-cookie")
+                .and()
                 .logout().permitAll().logoutUrl("/doLogout")
                 .and()
                 .csrf().disable();
@@ -48,6 +49,6 @@ public class EmployeeSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public static PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return EmployeePasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 }
