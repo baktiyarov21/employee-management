@@ -2,26 +2,37 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="" th:href="@{/css/createemployee.css}">
-    <title>Create employee</title>
+    <title>Employee List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+          crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/5.1.1/css/bootstrap.min.css}">
+
 </head>
 <body>
-<div id="main">
-    <div id="first">
-        <form th:action="@{/employee-mvc/save-employee}" th:object="${employee}" method="post">
-            <h1>Add new employee</h1>
-            <h4>Please fill all entries.</h4>
-            <label>Name: </label>
-            <input type="text" name="name" th:field="*{name}">
-            <label>Surname: </label>
-            <input type="text" name="surname" th:field="*{surname}">
-            <label>Birthday:</label>
-            <input type="text" th:field="*{birthday}" placeholder="yyyy-MM-dd" />
-            <label>Salary: </label>
-            <input type="text" name="salary" th:field="*{salary}">
-            <button type="submit">Add</button>
-        </form>
-    </div>
+<nav th:replace="fragments :: navigation"></nav>
+<div class="container mt-3">
+    <form th:action="@{/employee/save-employee}" th:object="${employee}" method="post">
+        <h1>Add new employee</h1>
+        <h4>Please fill all entries.</h4>
+        <div class="form-floating mb-3 mt-3">
+            <input type="text" class="form-control" id="name" placeholder="Enter name" name="name"
+                   th:field="*{name}">
+            <label for="name">Name</label>
+        </div>
+        <div class="form-floating mb-3 mt-3">
+            <input type="text" class="form-control" id="surname" placeholder="Enter surname" name="surname"
+                   th:field="*{surname}">
+            <label for="surname">Surname</label>
+        </div>
+
+        <div class="form-floating mb-3 mt-3">
+            <input type="text" class="form-control" id="birthdate" placeholder="yyyy-MM-dd" name="birthdate"
+                   th:field="*{birthday}">
+            <label for="birthdate">Birthdate</label>
+        </div>
+        <button class="btn btn-primary" type="submit">Create</button>
+    </form>
 </div>
 </body>
 </html>

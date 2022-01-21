@@ -3,59 +3,48 @@ package com.arsenbaktiyarov.spring.employees.controller;
 import com.arsenbaktiyarov.spring.employees.entity.Employee;
 import com.arsenbaktiyarov.spring.employees.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Slf4j
-@RestController
-@RequestMapping("/employee-rest")
+@Controller
+@RequestMapping("/employee")
 public class EmployeeController {
-
     private final EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/employee/{id}")
-    public Employee getById(@PathVariable Long id) {
-        return employeeService.findById(id);
+    @GetMapping({"", "/","list"})
+    public String showUsersList(Model model) {
+        List<Employee> employees = employeeService.findAll();
+        model.addAttribute("employees", employees);
+        return "employee/employee";
     }
 
-    @GetMapping("/employees")
-    public List<Employee> getAllEmployees() {
-        return employeeService.findAll();
+    @GetMapping("/create")
+    @PreAuthorize("isAuthenticated()")
+    public String createEmployee(Model model) {
+        model.addAttribute("employee", new Employee());
+        return "employee/createEmployee";
     }
 
-
-
-    @PostMapping("/employees")
-    public Employee addNewEmployee(@RequestBody Employee employee) {
+    @PostMapping ("/save-employee")
+    public String saveEmployee(@ModelAttribute Employee employee) {
         employeeService.save(employee);
-        return employee;
+        return "redirect:/employee/list";
     }
 
-    @PutMapping("/employees")
-    public Employee updateEmployee(@RequestBody Employee employee) {
-        employeeService.save(employee);
-        return employee;
-    }
-
-    @DeleteMapping("/delete/employees/")
-    public String delete(@RequestBody Employee employee) {
-        employeeService.delete(employee);
-        return "Employee deleted" + employee.getName();
-    }
-
-    @DeleteMapping("/delete/employees/{id}")
-    public String deleteEmployeeById (@PathVariable Long id) {
+    @GetMapping("/delete/{id}")
+    public String deleteEmployee(@PathVariable Long id) {
         employeeService.deleteById(id);
-        return "Employee with id = " + id + " deleted";
-    }
-
-    @GetMapping("employees/name/{name}")
-    public List<Employee> findAllByName(@PathVariable String name) {
-        return employeeService.findAllByName(name);
+        return "redirect:/employee/list";
     }
 }
+
+
