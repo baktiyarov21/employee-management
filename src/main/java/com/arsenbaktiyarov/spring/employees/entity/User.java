@@ -9,6 +9,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.util.Calendar;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -38,5 +39,18 @@ public class User extends BaseEntity {
         this.email = email;
         this.password = password;
         this.passwordConfirmation = passwordConfirmation;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(passwordConfirmation, user.passwordConfirmation) && Objects.equals(created, user.created);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email, password, passwordConfirmation, created);
     }
 }

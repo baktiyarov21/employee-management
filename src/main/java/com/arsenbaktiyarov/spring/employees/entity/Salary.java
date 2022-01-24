@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -39,6 +40,19 @@ public class Salary extends BaseEntity {
         this.salary = salary;
         this.fromDate = fromDate;
         this.toDate = toDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Salary)) return false;
+        Salary salary1 = (Salary) o;
+        return salary == salary1.salary && Objects.equals(employee, salary1.employee) && Objects.equals(fromDate, salary1.fromDate) && Objects.equals(toDate, salary1.toDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(employee, salary, fromDate, toDate);
     }
 
     @Override
