@@ -1,14 +1,16 @@
 package com.arsenbaktiyarov.spring.employees.controller;
 
 import com.arsenbaktiyarov.spring.employees.entity.Department;
-import com.arsenbaktiyarov.spring.employees.exception.DepartmentNotFoundException;
 import com.arsenbaktiyarov.spring.employees.service.DepartmentService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/department")
 public class DepartmentController{
 
@@ -19,44 +21,15 @@ public class DepartmentController{
     }
 
     @GetMapping("/")
-    public List<Department> findAll() {
-        return departmentService.findAll();
+    public String showDepartmentsList(Model model) {
+        List<Department> departments = departmentService.findAll();
+        model.addAttribute("departments", departments);
+        return "department/department";
     }
 
-    @GetMapping("/{id}")
-    public Department findById(@PathVariable Long id) {
-        Department department = departmentService.findById(id);
-        if (department == null) {
-            throw new DepartmentNotFoundException("id-" + id);
-        }
-        return department;
-    }
-
-
-    @GetMapping("/{name}")
-    public Department findByName(@PathVariable String name) {
-        return departmentService.findByName(name);
-    }
-
-    @PostMapping("/")
-    public Department save(Department department) {
-        return departmentService.save(department);
-    }
-
-    @DeleteMapping("/delete/")
-    public String delete(Department department) {
-        departmentService.delete(department);
-        return "Department " + department.getName() + " was deleted";
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public String deleteById(@PathVariable Long id) {
+    @GetMapping("/delete/{id}")
+    public String deleteDepartment(@PathVariable Long id) {
         departmentService.deleteById(id);
-        if(departmentService.findById(id) == null) {
-            return "Department with " + id + " was deleted";
-        }
-        return "Department with " + id + " not found ";
-
-
+        return "redirect:/department/";
     }
 }

@@ -11,18 +11,15 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.sql.Date;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.anyLong;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -70,23 +67,6 @@ class DepartmentControllerImplTest {
                 .andReturn();
         Department department = departmentService.findById(anyLong());
         assertEquals(1L, department.getId());
-
-    }
-
-    @Test
-    void save() throws Exception {
-        when(departmentService.save(any())).thenReturn(departments.get(0));
-        mockMvc.perform(post("/department/")).andExpect(status().isOk());
-        verify(departmentService).save(any());
-        verify(departmentService, times(1)).save(any());
-        assertEquals("HR", departments.get(0).getName());
-    }
-
-    @Test
-    void deleteById() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
-                .delete("/department/")).andExpect(status().isOk()).andReturn();
-        System.out.println(mvcResult.getResponse().getContentAsString());
 
     }
 }
